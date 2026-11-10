@@ -1,0 +1,21 @@
+# miragea-mcp
+
+> MCP server (stdio, Python) that gives AI agents voiceover, voice cloning and captions via the Miragea API (https://miragea.ai/v1): text of any length to speech with exact durations, SRT/VTT captions from local audio/video, and per-scene narration with durationInFrames and Remotion Caption[] JSON. MIT licensed.
+
+## Install
+- `uvx miragea-mcp` (config: command "uvx", args ["miragea-mcp"], env MIRAGEA_API_KEY)
+- Claude Code: `claude mcp add miragea -e MIRAGEA_API_KEY=KEY -- uvx miragea-mcp`
+- PyPI: https://pypi.org/project/miragea-mcp/  Registry name: io.github.yyert123/miragea-mcp
+
+## Tools
+- check_setup: verify key, ffmpeg, saved voices; returns fixes.
+- list_voices: saved Miragea voices (voice_id, name).
+- speak(text, output_path?, voice_id? | reference_audio_url + reference_text?, model, speed, format): any length; returns path and exact seconds.
+- transcribe(path, style=standard|shorts): SRT + VTT with whole words and 42-char lines.
+- narrate_scenes(scenes, output_dir?, fps=30, captions=false): per-scene audio, seconds, durationInFrames, startFrame, narration.json, optional captions.json (Remotion Caption).
+
+## Facts
+- Env: MIRAGEA_API_KEY (required), MIRAGEA_VOICE_ID, MIRAGEA_REF_URL, MIRAGEA_REF_TEXT, MIRAGEA_OUTPUT_DIR (default ~/Miragea).
+- Never overwrites files; caches identical requests; idempotent retries; errors return {error, how_to_fix}.
+- Reference clips for cloning must currently be public URLs; only clone voices you may use.
+- Source: https://github.com/yyert123/miragea-mcp  Demo: https://huggingface.co/spaces/headvox/miragea-mcp

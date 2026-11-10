@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "miragea-mcp"
+version = "0.1.0"
+description = "MCP server for AI voiceover, voice cloning and captions: text of any length to speech with exact durations, SRT/VTT from local files, per-scene narration for Remotion. Works with Claude, Cursor, Codex."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10"
+authors = [{ name = "HeadVox" }]
+keywords = ["mcp", "mcp-server", "model-context-protocol", "text-to-speech", "tts", "voiceover", "voice-cloning", "captions", "subtitles", "srt", "remotion", "claude", "cursor", "elevenlabs-alternative", "miragea"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Multimedia :: Sound/Audio :: Speech",
+  "Topic :: Multimedia :: Video",
+  "Intended Audience :: Developers",
+]
+dependencies = ["mcp>=1.2"]
+
+[project.urls]
+Homepage = "https://github.com/yyert123/miragea-mcp"
+Repository = "https://github.com/yyert123/miragea-mcp"
+Demo = "https://huggingface.co/spaces/headvox/miragea-mcp"
+"Voice engine" = "https://miragea.ai"
+
+[project.scripts]
+miragea-mcp = "miragea_mcp.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
